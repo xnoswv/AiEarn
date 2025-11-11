@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiEarn Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f0ff;
+            color: #333;
+            padding-bottom: 70px;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .earned {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        
+        .token-icon {
+            width: 18px;
+            height: 18px;
+            background: #4CAF50;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+        
+        .withdraw-btn {
+            background: #FF9900;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+             text-decoration: none;
+        }
+        
+        .support {
+            display: flex;
+            align-items: center;
+            color: #007AFF;
+            text-decoration: none;
+        }
+        
+        .support-icon {
+            width: 20px;
+            height: 20px;
+            background: #007AFF;
+            border-radius: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-left: 10px;
+        }
+        
+        /* Banner */
+        .banner {
+            background: #1a1a1a;
+            color: white;
+            padding: 0.10px 0.10px;
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .weekend-badge {
+            background: #ff000;
+            color: white;
+            font-size: 1px;
+            padding: 0.1px 0px;
+            border-radius: 2px;
+            margin-left: 0px;
+        }
+        
+        .banner-content {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .banner-text {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .earn-highlight {
+            color: #4CAF50;
+        }
+        
+        .lets-go {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 1px 1px;
+            border-radius: 5px;
+            font-weight: bold;
+      margin-right: 30px;
+       text-decoration: none;
+        }
+        
+        /* TP Section */
+        .tp-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .tp-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .refresh-icon {
+            width: 24px;
+            height: 24px;
+            background: #4CAF50;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .tp-value-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .tp-icon {
+            width: 25px;
+            height: 25px;
+            background: #333;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .tp-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        /* Daily Stats */
+        .daily-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin: 15px 0;
+        }
+        
+        .daily-earn {
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .history {
+            display: flex;
+            align-items: center;
+            color: #888;
+            text-decoration: none;
+        }
+        
+        .history-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #888;
+            border-radius: 4px;
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Settlement Time */
+        .settlement-container {
+            background: #e6e6fa;
+            border-radius: 15px;
+            padding: 12px;
+            text-align: center;
+            margin: 0 20px 20px;
+        }
+        
+        .settlement-time {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1em;
+        }
+        
+        .buy-tp {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .refer {
+            background: #e6e6fa;
+            color: #333;
+            position: relative;
+        }
+        
+        .refer-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #ff0000;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        /* ROI Section */
+        .roi-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 20px 20px;
+            position: relative;
+        }
+        
+        .hot-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff6b00;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .roi-title {
+            color: #4a4a9e;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        
+        .roi-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .roi-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .roi-row:last-child {
+            border-bottom: none;
+        }
+        
+        .tp-amount {
+            font-weight: bold;
+        }
+        
+        .return-value {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .flames {
+            color: #ff6b00;
+            margin-left: 5px;
+        }
+        
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 20px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        
+        .tab {
+            color: #888;
+            font-weight: bold;
+        }
+        
+        .tab.active {
+            color: #4a4a9e;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .nav-icon {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .nav-item.active .nav-icon {
+            background: #FF9900;
+        }
+        
+        .nav-item.active span {
+            color: #FF9900;
+        }
+        
+        .
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="earned">
+            You Earned: <div class="token-icon"></div> 0.00
+        </div>
+        <a href="withdraw.html" class="withdraw-btn" target="_blank">Withdraw →</a>
+        <a href="#" class="support">
+            Support <span class="support-icon">
+    <img src="assets/images/telegram_logo.png" alt="Telegram" class="support-img">
+</span>
+        </a>
+    </div>
+    
+    <!-- Banner -->
+    <div class="banner">
+        <div class="weekend-badge">
+  <img src="assets/images/activity3.png" alt="Weekend Badge" class="weekend-img">
+</div>
+        <div class="banner-content">
+            <div class="banner-text">Earn <span class="earn-highlight">↑30%</span> in 48h</div>
+        </div>
+        <a href="#" class="lets-go">LET'S GO</a>
+    </div>
+    
+    <!-- TP Section -->
+    <div class="tp-container">
+        <div class="tp-header">
+            <h2>TP (Trade Power)</h2>
+            <div class="refresh-icon">
+  <img src="assets/images/refresh.png" alt="Refresh" class="refresh-img">
+</div>
+        </div>
+        <div class="tp-value-container">
+            <div class="tp-icon">
+  <img src="assets/images/AiEarn.png" alt="icon" class="tp-img">
+</div>
+            <div class="tp-value">0.0</div>
+        </div>
+    </div>
+    
+    <!-- Daily Stats -->
+    <div class="daily-stats">
+        <div>Daily Earn: $0.000 <span class="daily-earn">(+5.5%)</span></div>
+        <a href="#" class="history">
+            <div class="history-icon">→</div> History
+        </a>
+    </div>
+    
+    <!-- Settlement Time -->
+    <div class="settlement-container">
+        <div>Settlement time: <span class="settlement-time">00h 00m 00s</span></div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="btn buy-tp">
+            <div class="tp-icon">
+  <img src="assets/images/AiEarn.png" alt="icon" class="tp-img">
+</div>
+Buy TP
+        </button>
+        <button class="btn refer">
+            <div class="refer-badge">$10</div> Refer&Earn
+        </button>
+    </div>
+    
+    <!-- ROI Section -->
+    <div class="roi-container">
+        <div class="hot-badge">HOT</div>
+        <h3 class="roi-title">Return on Investment in AiEarn</h3>
+        
+        <div class="roi-row">
+            <div class="tp-amount">≥$0</div>
+            <div class="return-value">5.5%</div>
+        </div>
+        
+        <div class="roi-row">
+            <div class="tp-amount">≥$20</div>
+            <div class="return-value">6%</div>
+        </div>
+        
+        <div class="roi-row">
+            <div class="tp-amount">≥$300 <span class="flames">🔥🔥🔥</span></div>
+            <div class="return-value">6.5%</div>
+        </div>
+        
+        <div class="roi-row">
+            <div class="tp-amount">≥$3000-10000 <span class="flames">🔥</span></div>
+            <div class="return-value">7%</div>
+        </div>
+    </div>
+    
+    <!-- Tabs -->
+    <div class="tabs-container">
+        <div class="tab active">Ai Trading status</div>
+        <div class="tab">My Trade Power</div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <div class="nav-icon">
+  <img src="assets/images/AiEarn.png" alt="icon" style="width: 29px; height: 29px;">
+</div>
+            <span>AiEarn</span>
+        </a>
+        <a href="Friends.html" class="nav-item">
+      <div class="nav-icon" style="background: #007bff;">
+  <img src="assets/images/Friends.png" alt="icon" style="width: 24px; height: 24px;">
+</div>
+            <span>Friends</span>
+        </a>
+        <a href="Introduction.html" class="nav-item">
+     <div class="nav-icon" style="background: #4CAF50;">
+  <img src="assets/images/Introduction.png" alt="icon" style="width: 24px; height: 24px;">
+</div>
+            <span>Introduction</span>
+        </a>
+    </div>
+</body>
+</html>

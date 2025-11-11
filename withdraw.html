@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة السحب</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #F9F3F7;
+            color: #333;
+            padding: 16px;
+            height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-arrow {
+            font-size: 24px;
+            color: #333;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .balance-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .balance-label {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .balance-amount {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 5px 0 20px;
+        }
+
+        .exchange-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding:، 5px;
+            font-size: 20px;
+            margin-bottom: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+align-items: center; 
+        }
+
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 44px;
+            background-color: white;
+            border-radius: 00px;
+            margin-right: 00px;
+            position: relative;
+            text-align: center; 
+        }
+
+        .icon::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(45deg, #4CAF50, #2196F3);
+            border-radius: 100%;
+            text-align: center; 
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .input-label {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .all-amount {
+            color: #2196F3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1.5px solid #E0E0E0;
+            border-radius: 14px;
+            font-size: 16px;
+            background: #F9F9F9;
+            color: #757575;
+            text-align: center;
+        }
+
+        .address-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .wallet-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin-left: 8px;
+            position: relative;
+        }
+
+        .wallet-icon::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .continue-btn {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            padding: 16px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0 40px;
+        }
+
+        .blurred-section {
+            background: #F5F5F5;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .blurred-element {
+            height: 40px;
+            background: #E0E0E0;
+            border-radius: 20px;
+        }
+
+        .blurred-circle {
+            width: 50px;
+            height: 50px;
+            background: #E0E0E0;
+            border-radius: 50%;
+        }
+
+        .blurred-bar-1 {
+            width: 200px;
+        }
+
+        .blurred-bar-2 {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="back-arrow">←</a>
+        <h1>withdrawal</h1>
+    </div>
+
+    <div class="balance-section">
+        <div class="balance-label">Available balance :</div>
+        <div class="balance-amount">0</div>
+    </div>
+
+    <button class="exchange-btn">
+        <span class="icon"></span> Exchange to TP
+    </button>
+
+    <div class="form-container">
+        <div class="input-group">
+            <div class="input-header">
+                <span class="input-label">Withdraw amount</span>
+                <a href="#" class="all-amount">All Amount</a>
+            </div>
+            <input type="text" class="input-field" value="Min $1 USDT" disabled>
+        </div>
+
+        <div class="input-group">
+            <div class="address-label">
+                <span>BSC-USDT Receiving address:</span>
+                <span class="wallet-icon"></span>
+            </div>
+            <input type="text" class="input-field" value="Eg. 0x4df...3das" disabled>
+        </div>
+
+        <button class="continue-btn">Continue</button>
+    </div>
+
+    <div class="blurred-section">
+        <div class="blurred-circle"></div>
+        <div class="blurred-element blurred-bar-1"></div>
+        <div class="blurred-element blurred-bar-2"></div>
+    </div>
+</body>
+</html>

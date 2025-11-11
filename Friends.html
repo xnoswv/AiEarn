@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإحالة والأرباح - AiEarn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #ffc107;
+            --accent: #4caf50;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --text: #333;
+            --gray: #757575;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .user-profile img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .page-title h1 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .page-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 i {
+            color: var(--secondary);
+        }
+        
+        .referral-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(26, 35, 126, 0.05);
+            border-radius: 10px;
+        }
+        
+        .detail-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            background: rgba(26, 35, 126, 0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .example-box {
+            background: rgba(255, 193, 7, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid var(--secondary);
+            margin: 20px 0;
+        }
+        
+        .example-box h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .referral-link {
+            background: linear-gradient(135deg, var(--primary), #283593);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .referral-link::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        }
+        
+        .referral-link h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .link-container {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .link-text {
+            flex: 1;
+            padding: 15px;
+            color: var(--dark);
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .copy-btn {
+            background: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 0 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: #ffb300;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .bonus-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .bonus-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        
+        .bonus-status {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            background: #ffb300;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .stats-table th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: right;
+        }
+        
+        .stats-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: right;
+        }
+        
+        .stats-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .stats-table tr:hover {
+            background: #f0f0f0;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .friends-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .friend-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .friend-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .friend-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid var(--primary);
+        }
+        
+        .friend-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .friend-status {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .referral-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .link-container {
+                flex-direction: column;
+            }
+            
+            .copy-btn {
+                padding: 10px;
+            }
+            
+            .stats-table {
+                font-size: 0.9rem;
+            }
+            
+            .stats-table th, .stats-table td {
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <h1>Ai<span>Earn</span></h1>
+            </div>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=مستخدم&background=1a237e&color=fff" alt="صورة المستخدم">
+                <span>مرحباً، أحمد!</span>
+            </div>
+        </header>
+        
+        <div class="page-title">
+            <h1>الإحالة والأرباح</h1>
+            <p>ادعُ أصدقاءك واكسب مكافآت مع AiEarn</p>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-user-friends"></i> إحالة واكسب</h2>
+            
+            <div class="referral-details">
+                <div class="detail-item">
+                    <i class="fas fa-gift"></i>
+                    <div>
+                        <h3>مكافأة لكل إحالة</h3>
+                        <p>اربح مكافأة 10$ عندما يقوم المدعو بأول شراء TP بقيمة 50+ TP</p>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <i class="fas fa-sitemap"></i>
+                    <div>
+                        <h3>عمولة متعددة المستويات</h3>
+                        <p>استمتع بعمولة 1% على جميع المشتريات التي يقوم بها حتى 10 مستويات من الإحالات!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-box">
+                <h4><i class="fas fa-lightbulb"></i> مثال:</h4>
+                <p>تقوم بدعوة جيمي → أول شراء TP لجيمي هو ≥ 50 TP → تربح مكافأة 10$. إذا قام جيمي بدعوة آخرين (حتى 10 مستويات)، ستستمر في ربح 1% من جميع مشترياتهم من TP.</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-link"></i> رابط الإحالة الخاص بك</h2>
+            
+            <div class="referral-link">
+                <h3>اربح 500$ USDT مجاناً، انضم إلى AiEarn الآن!</h3>
+                
+                <div class="link-container">
+                    <div class="link-text" id="referralLink">https://t.me/AiEarnTp_bot?start=7814354978</div>
+                    <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> نسخ</button>
+                </div>
+                
+                <div class="share-buttons">
+                    <a href="#" class="share-btn"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="share-btn"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card bonus-card">
+            <h2><i class="fas fa-coins"></i> مكافآت الإحالة</h2>
+            <div class="bonus-amount">$0</div>
+            <div class="bonus-status">$0 معلقة</div>
+            <button class="btn" disabled>المطالبة</button>
+        </div>
+        
+        <div class="card">
+            <div class="tabs">
+                <div class="tab active" data-tab="stats">الإحصائيات</div>
+                <div class="tab" data-tab="friends">الأصدقاء</div>
+                <div class="tab" data-tab="introduction">مقدمة AiEarn</div>
+            </div>
+            
+            <div class="tab-content active" id="stats">
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>المستوى الفرعي</th>
+                            <th>عدد المستخدمين</th>
+                            <th>مبلغ الشراء</th>
+                            <th>مكافأتك</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>المستوى 1</td>
+                            <td>5</td>
+                            <td>$250</td>
+                            <td>$2.50</td>
+                        </tr>
+                        <tr>
+                            <td>المستوى 2</td>
+                            <td>12</td>
+                            <td>$600</td>
+                            <td>$6.00</td>
+                        </tr>
+                        <tr>
+                            <td>المستوى 3</td>
+                            <td>28</td>
+                            <td>$1,400</td>
+                            <td>$14.00</td>
+                        </tr>
+                        <tr>
+                            <td>المستوى 4</td>
+                            <td>45</td>
+                            <td>$2,250</td>
+                            <td>$22.50</td>
+                        </tr>
+                        <tr>
+                            <td>المستوى 5</td>
+                            <td>62</td>
+                            <td>$3,100</td>
+                            <td>$31.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="friends">
+                <div class="friends-list">
+                    <div class="friend-card">
+                        <img src="https://ui-avatars.com/api/?name=محمد&background=4caf50&color=fff" class="friend-avatar" alt="محمد">
+                        <div class="friend-name">محمد</div>
+                        <div class="friend-status">نشط</div>
+                    </div>
+                    <div class="friend-card">
+                        <img src="https://ui-avatars.com/api/?name=سارة&background=ff9800&color=fff" class="friend-avatar" alt="سارة">
+                        <div class="friend-name">سارة</div>
+                        <div class="friend-status">نشط</div>
+                    </div>
+                    <div class="friend-card">
+                        <img src="https://ui-avatars.com/api/?name=خالد&background=2196f3&color=fff" class="friend-avatar" alt="خالد">
+                        <div class="friend-name">خالد</div>
+                        <div class="friend-status">معلق</div>
+                    </div>
+                    <div class="friend-card">
+                        <img src="https://ui-avatars.com/api/?name=فاطمة&background=9c27b0&color=fff" class="friend-avatar" alt="فاطمة">
+                        <div class="friend-name">فاطمة</div>
+                        <div class="friend-status">نشط</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="introduction">
+                <div class="empty-state">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>مقدمة عن AiEarn</h3>
+                    <p>منصة تداول العملات المشفرة المدعومة بالذكاء الاصطناعي</p>
+                    <p>تقدم AiEarn حلول تداول ذكية وآمنة مع نظام أرباح شفاف</p>
+                    <a href="#" class="btn" style="margin-top: 15px;">تعرف أكثر على AiEarn</a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 AiEarn LLC. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
+
+    <script>
+        // نسخ رابط الإحالة
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const referralLink = document.getElementById('referralLink');
+            const textArea = document.createElement('textarea');
+            textArea.value = referralLink.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // تغيير نص الزر مؤقتاً
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
+            this.style.background = '#4caf50';
+            this.style.color = 'white';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.style.background = '';
+                this.style.color = '';
+            }, 2000);
+        });
+        
+        // نظام التبويبات
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // إزالة النشاط من جميع الألسنة والمحتويات
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // إضافة النشاط للسان والمحتوى المحدد
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

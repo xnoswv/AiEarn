@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AiEarn - منصة التداول بالعملات المشفرة المدعومة بالذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #ffc107;
+            --accent: #4caf50;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #283593);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.85), rgba(26, 35, 126, 0.9)), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: #ffb300;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 i {
+            color: var(--secondary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item i {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        .compliance {
+            background-color: var(--light);
+        }
+        
+        .compliance-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .compliance-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .compliance-item h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .compliance-item h4 i {
+            color: var(--accent);
+        }
+        
+        .highlight {
+            background-color: rgba(255, 193, 7, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-right: 4px solid var(--secondary);
+        }
+        
+        .team-tech {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .team-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .team-member i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checklist i {
+            color: var(--accent);
+        }
+        
+        .security {
+            background-color: var(--light);
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .security-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .security-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <h1>Ai<span>Earn</span></h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#introduction">مقدمة</a>
+                    <a href="#compliance">الامتثال القانوني</a>
+                    <a href="#technology">التقنية</a>
+                    <a href="#earnings">الأرباح</a>
+                    <a href="#security">الأمان</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>إعادة تعريف تداول العملات المشفرة بالذكاء الاصطناعي</h2>
+            <p>منصة متوافقة قانونيًا، شفافة وذكية للعملات المشفرة</p>
+            <a href="#compliance" class="btn">ابدأ رحلتك الآن</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction">
+        <div class="container">
+            <div class="section-title">
+                <h2>مقدمة عن AiEarn</h2>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-building"></i> عن الشركة</h3>
+                <p>AiEarn LLC هي كيان قانوني مسجل في كولورادو، الولايات المتحدة الأمريكية (رقم التسجيل: 17078227)، وتعمل تحت قوانين كولورادو التجارية وأطر التنظيم المالي.</p>
+                
+                <div class="highlight">
+                    <h4><i class="fas fa-shield-alt"></i> حماية المستخدم:</h4>
+                    <p>جميع المعاملات محمية بموجب القانون التجاري الموحد (UCC) لقوانين كولورادو وقانون تنظيم الأصول الرقمية، مما يضمن حقوقًا قابلة للتنفيذ وآليات حل النزاعات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compliance Section -->
+    <section id="compliance" class="compliance">
+        <div class="container">
+            <div class="section-title">
+                <h2>الامتثال القانوني والثقة</h2>
+            </div>
+            <div class="compliance-content">
+                <div class="compliance-item">
+                    <h4><i class="fas fa-certificate"></i> التحقق من الشهادة:</h4>
+                    <p>يمكنك التحقق من أوراق اعتمادنا عبر بوابة وزير خارجية كولورادو باستخدام رقم التسجيل الخاص بنا.</p>
+                    <a href="https://www.coloradosos.gov/biz/CertificateSearchCriteria.do" class="btn" style="margin-top: 15px;">التحقق الآن</a>
+                </div>
+                <div class="compliance-item">
+                    <h4><i class="fas fa-file-contract"></i> الوثائق القانونية:</h4>
+                    <p>نحن نقدم شهادات موثقة رسميًا:</p>
+                    <ul class="checklist">
+                        <li><i class="fas fa-check-circle"></i> شهادة تقديم المستندات</li>
+                        <li><i class="fas fa-check-circle"></i> شهادة الحالة الجيدة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team & Technology Section -->
+    <section id="technology" class="team-tech">
+        <div class="container">
+            <div class="section-title">
+                <h2>الفريق النخبوي والتقنية المتطورة</h2>
+            </div>
+            
+            <div class="team-content">
+                <div class="team-member">
+                    <i class="fab fa-btc"></i>
+                    <h3>خبراء الصناعة</h3>
+                    <p>تأسست الشركة من قبل خريجي بينانس (أكبر منصة لتداول العملات المشفرة في العالم) و OpenAI (رواد الابتكار في الذكاء الاصطناعي)، مما يجمع بين الخبرة المالية العميقة وبحوث الذكاء الاصطناعي المتقدمة.</p>
+                </div>
+                
+                <div class="team-member">
+                    <i class="fas fa-brain"></i>
+                    <h3>نموذج الذكاء الاصطناعي الخاص</h3>
+                    <p>محرك AI-HedgeTrade™ المحسن على بنية ChatGPT-4 يحلل بيانات السلسلة في الوقت الفعلي، ومشاعر السوق، والمؤشرات الاقتصادية الكلية، محققًا معدل نجاح استراتيجي سنوي 82%.</p>
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">82%</div>
+                    <div class="stat-label">معدل النجاح السنوي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">مراقبة السوق</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">شفافية</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-mobile-alt"></i> تطبيق AiEarn الصغير: أرباح العملات المشفرة بسهولة</h3>
+                <p>قوة التداول (TP):</p>
+                <p>اشترِ TP للاستفادة من قدرات صنع القرار الخاصة بذكائنا الاصطناعي لتنفيذ تلقائي لاستراتيجيات المراجحة منخفضة المخاطر، ومتابعة الاتجاهات، وتقلبات الأسواق - لا حاجة للتداول اليدوي.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Earnings Section -->
+    <section id="earnings">
+        <div class="container">
+            <div class="section-title">
+                <h2>أرباح شفافة ونظام النمو المشترك</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="card">
+                    <h3><i class="fas fa-chart-line"></i> أرباح شفافة</h3>
+                    <ul class="checklist">
+                        <li><i class="fas fa-check-circle"></i> يتم تسوية الأرباح اليومية مباشرة إلى محفظة blockchain الخاصة بك.</li>
+                        <li><i class="fas fa-check-circle"></i> شفافية كاملة مع سجلات المعاملات المتاحة للجمهور.</li>
+                        <li><i class="fas fa-check-circle"></i> واجهات جاهزة للتدقيق من طرف ثالث (مثل CertiK).</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-users"></i> مكافآت الإحالة</h3>
+                    <div class="feature-item">
+                        <i class="fas fa-gift"></i>
+                        <div>
+                            <h4>مكافآت مباشرة:</h4>
+                            <p>اربح 0.2 دولار USDT لكل صديق ينشط TP؛ ويحصلون على 0.5 TP.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <i class="fas fa-sitemap"></i>
+                        <div>
+                            <h4>عمولات متعددة المستويات:</h4>
+                            <p>احصل على 10% من مبالغ شراء TP من 10 مستويات من الإحالات (متوافقة مع لوائح التسويق بالعمولة العالمية).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fab fa-telegram"></i> مدفوعة بالمجتمع</h3>
+                <p>انضم إلى قناة Telegram الرسمية لدينا (@News_AiEarn)، للحصول على رؤى حصرية للسوق، وأوراق بيضاء استراتيجية، وتحديثات تنظيمية.</p>
+                <a href="https://t.me/News_AiEarn" class="btn" style="margin-top: 15px;">انضم إلى القناة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section id="security" class="security">
+        <div class="container">
+            <div class="section-title">
+                <h2>الأمان والثقة</h2>
+            </div>
+            
+            <div class="security-grid">
+                <div class="security-item">
+                    <i class="fas fa-vault"></i>
+                    <h3>حفظ الأصول</h3>
+                    <p>يتم الاحتفاظ بأموال المستخدمين مع PrimeTrust، وهي جهة حفظ أمريكية مؤمنة من قبل FDIC، باستخدام تخزين بارد HSM للمفاتيح الخاصة.</p>
+                </div>
+                
+                <div class="security-item">
+                    <i class="fas fa-lock"></i>
+                    <h3>التشفير من المستوى العسكري</h3>
+                    <p>بنية تحتية متوافقة مع SOC-2 Type II من طرف إلى طرف مع تشفير TLS 1.3 و AES-256.</p>
+                </div>
+                
+                <div class="security-item">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h3>المساءلة</h3>
+                    <p>تدقيقات ربع سنوية من طرف ثالث ومجلس مراقبة مجتمعي مفتوح القنوات للشفافية التشغيلية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AiEarn</h3>
+                    <p>منصة تداول العملات المشفرة المدعومة بالذكاء الاصطناعي، توفر حلاً آمناً وشفافاً ومربحاً للمستثمرين.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#introduction">مقدمة</a></li>
+                        <li><a href="#compliance">الامتثال القانوني</a></li>
+                        <li><a href="#technology">التقنية</a></li>
+                        <li><a href="#earnings">الأرباح</a></li>
+                        <li><a href="#security">الأمان</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> كولورادو، الولايات المتحدة الأمريكية</li>
+                        <li><i class="fas fa-envelope"></i> info@aiearn.com</li>
+                        <li><i class="fab fa-telegram"></i> @News_AiEarn</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 AiEarn LLC. جميع الحقوق محفوظة. مسجلة في كولورادو، الولايات المتحدة الأمريكية (رقم التسجيل: 17078227)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe cards for animation
+        document.querySelectorAll('.card, .compliance-item, .team-member, .security-item').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
